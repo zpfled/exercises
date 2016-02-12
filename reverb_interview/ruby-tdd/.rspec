@@ -1,0 +1,5 @@
+--color
+--order=rand
+--profile
+-I fast_spec
+-I .

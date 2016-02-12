@@ -1,0 +1,39 @@
+
+CREATE TABLE 'companies' (
+  'name' VARCHAR NOT NULL DEFAULT 'NULL',
+  'id' INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  PRIMARY KEY ('id')
+);
+
+
+CREATE TABLE 'employee_groups' (
+  'id' INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  'company_id' INTEGER NULL DEFAULT NULL,
+  'name' VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY ('id')
+);
+
+CREATE TABLE 'medical_plans' (
+  'id' INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  'sponsor_id' INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY ('id')
+);
+
+CREATE TABLE 'sponsors' (
+  'id' INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  PRIMARY KEY ('id')
+);
+
+CREATE TABLE 'companies_medical_plans' (
+  'id' INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  'company_id' INTEGER NULL DEFAULT NULL,
+  'medical_plan_id' INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY ('id')
+);
+
+-- Foreign Keys
+
+ALTER TABLE 'employee_groups' ADD FOREIGN KEY (company_id) REFERENCES 'companies' ('id');
+ALTER TABLE 'medical_plans' ADD FOREIGN KEY (sponsor_id) REFERENCES 'sponsors' ('id');
+ALTER TABLE 'companies_medical_plans' ADD FOREIGN KEY (company_id) REFERENCES 'companies' ('id');
+ALTER TABLE 'companies_medical_plans' ADD FOREIGN KEY (medical_plan_id) REFERENCES 'medical_plans' ('id');
